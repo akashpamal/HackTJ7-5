@@ -129,82 +129,40 @@ class Car:
         
     def gen_pos_lane(self, lane, direction):
         #Generates X and Y given lane and direction
-        if direction == Directions.up:
-            #("up", lane)
-            if lane == 0: #Done
+        if direction == Directions.up)
+            if lane == 0:e
                 return pg.math.Vector2(775, 900)
             if lane == 1:
                 return pg.math.Vector2(831, 900)
-        elif direction == Directions.down:
-            #print("down", lane)
-            if lane == 0: #Done
+        elif direction == Directions.down)
+            if lane == 0:e
                 return pg.math.Vector2(717, -100)
             if lane == 1:
                 return pg.math.Vector2(661, -100)
-        elif direction == Directions.left:
-            #print("left", lane)
+        elif direction == Directions.left)
             if lane == 0:
                 return pg.math.Vector2(1540, 367)
             if lane == 1:
                 return pg.math.Vector2(1540, 318)
-        elif direction == Directions.right:
-            #print("right", lane)
+        elif direction == Directions.right)
             if lane == 0:
                 return pg.math.Vector2(-100, 462)
             if lane == 1:
                 return pg.math.Vector2(-100, 509)
                 
-        return "Bruh"
+        returnNone"
     
-    def gen_pos_lane_inclusive(self, lane, direction):
-        #Generates X and Y given lane and direction
-        if direction == Directions.up:
-            #print("up", lane)
-            if lane == 0: #Done
-                return pg.math.Vector2(775, 700)
-            if lane == 1:
-                return pg.math.Vector2(831, 700)
-        elif direction == Directions.down:
-            #print("down", lane)
-            if lane == 0: #Done
-                return pg.math.Vector2(717, 100)
-            if lane == 1:
-                return pg.math.Vector2(661, 100)
-        elif direction == Directions.left:
-            #print("left", lane)
-            if lane == 0:
-                return pg.math.Vector2(1340, 367)
-            if lane == 1:
-                return pg.math.Vector2(1340, 318)
-        elif direction == Directions.right:
-            #print("right", lane)
-            if lane == 0:
-                return pg.math.Vector2(100, 462)
-            if lane == 1:
-                return pg.math.Vector2(100, 509)
-                
-        return "Bruh"
-    
-    
-    def rotate_image(self, screen, old_image):
-        if self.direction == Directions.right:
-            rotated = pg.transform.rotate(old_image, 180)
-            rect = rotated.get_rect()
-            self.position.x -= rect.width / 2
-            self.position.y -= rect.height / 2
-        elif self.direction == Directions.up:
-            rotated = pg.transform.rotate(old_image, 270)
-            rect = rotated.get_rect()
-            self.position.x -= rect.width / 2
-            self.position.y -= rect.height / 2
-        elif self.direction == Directions.down:
-            rotated = pg.transform.rotate(old_image, 90)
-            rect = rotated.get_rect()
-            self.position.x -= rect.width / 2
-            self.position.y -= rect.height / 2
-        
+    def rotate_image(self, screen, old_image)
         if self.direction == Directions.left:
             return old_image
+        :
+        if self.direction == Directions.right:
+            rotated = pg.transform.rotate(old_image, 180
+        elif self.direction == Directions.up:
+            rotated = pg.transform.rotate(old_image, 270)
+        elif self.direction == Directions.down:
+            rotated = pg.transform.rotate(old_image, 90)
+        )         rect = rotated.get_rect()         self.position.x -= rect.width / 2         self.position.y -= rect.height / 2    e
         return rotated
     
     def in_intersection(self):
