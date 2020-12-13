@@ -6,8 +6,8 @@ from enum import Enum
 class Directions():
     right = (1, 0)
     left = (-1, 0)
-    up = (0, 1)
-    down = (0, -1)
+    up = (0, -1)
+    down = (0, 1)
      
     directions = [up, down, left, right]
 
@@ -25,17 +25,16 @@ class AssetManager():
 class Car:
     def __init__(self, screen, lane, max_acceleration = 0.0001):
         # Physics
-        self.direction = random.choice(Directions.directions)
+        self.direction = random.choice(Directions.directions) 
         self.position = self.gen_pos_lane(lane, self.direction)
         self.velocity = pg.math.Vector2(0.0, 0.0)
-        self.acceleration = 0.0
+        self.acceleration = pg.math.Vector2(self.direction[0] * max_acceleration, self.direction[1] * max_acceleration)
         
         # Graphics
         pg.sprite.Sprite.__init__(self)
         image = random.choice(AssetManager.cars)
         self.image = image.convert_alpha() # This gets the clear image backgrounds
-        self.image = pg.transform.scale(self.image, (200, 200))
-        # self.image = self.rotate_image(screen, self.image)
+        self.image = self.rotate_image(screen, self.image)
         
         # Characteristics
         self.length = self.image.get_size()[0]
@@ -58,24 +57,68 @@ class Car:
         # #(0, 1), (0, -1), (1, 0), (0, 1) 
         # self.velocity = random.randrange(30, 60)
 
-        
-        
+           
         
     def set_accel(self, new_accel):
-        pass
+        print("The AI has changed the Acceeration from " + str(self.acceleration) + " to " + str(new_accel))
+        if new_accel > self.max_acceleration:
+            print("Acceleration is not possible !!!!!!!!")
+        self.acceleration = new_accel
 
     def update(self, dt):
-        self.velocity += (self.acceleration * dt, 0)
-        self.velocity.x = max(-self.max_velocity, min(self.velocity.x, self.max_velocity))
+        self.velocity += self.acceleration * dt
+        #self.velocity = min(self.velocity.x, self.max_velocity)
+        self.position += self.velocity * dt
     
     def draw(self, screen):
-        screen.blit(self.image, (self.velocity.x, self.velocity.y))
+        screen.blit(self.image, (self.position.x, self.position.y))
         
-    def gen_pos_lane(self, lane, dir):
-        return pg.math.Vector2(0, 0)
+    def gen_pos_lane(self, lane, direction):
+        #Generates X and Y given lane and direction
+        if direction == Directions.up:
+            print("up", lane)
+            if lane == 0: #Done
+                return pg.math.Vector2(775, 900)
+            if lane == 1:
+                return pg.math.Vector2(831, 900)
+        elif direction == Directions.down:
+            print("down", lane)
+            if lane == 0: #Done
+                return pg.math.Vector2(717, -100)
+            if lane == 1:
+                return pg.math.Vector2(661, -100)
+        elif direction == Directions.left:
+            print("left", lane)
+            if lane == 0:
+                return pg.math.Vector2(1540, 367)
+            if lane == 1:
+                return pg.math.Vector2(1540, 318)
+        elif direction == Directions.right:
+            print("right", lane)
+            if lane == 0:
+                return pg.math.Vector2(-100, 462)
+            if lane == 1:
+                return pg.math.Vector2(-100, 509)
+                
+        return "Bruh"
     
     def rotate_image(self, screen, old_image):
         if self.direction == Directions.right:
             rotated = pg.transform.rotate(old_image, 180)
             rect = rotated.get_rect()
-            screen.blit(rotated, (middleX - rect.width / 2, middleY - rect.height / 2))
+            self.position.x -= rect.width / 2
+            self.position.y -= rect.height / 2
+        elif self.direction == Directions.up:
+            rotated = pg.transform.rotate(old_image, 270)
+            rect = rotated.get_rect()
+            self.position.x -= rect.width / 2
+            self.position.y -= rect.height / 2
+        elif self.direction == Directions.down:
+            rotated = pg.transform.rotate(old_image, 90)
+            rect = rotated.get_rect()
+            self.position.x -= rect.width / 2
+            self.position.y -= rect.height / 2
+        
+        if self.direction == Directions.left:
+            return old_image
+        return rotated
