@@ -58,38 +58,36 @@ class Car:
         """
         Stores all the information about a certain vehicle in the scene
         """
-        f
         # Physics
         self.direction = random.choice(Directions.directions) 
-        self.position = self.gen_pos_lane(lane, self.direction #Generates lane position from a direction and lane number)
+        self.position = self.gen_pos_lane(lane, self.direction) #Generates lane position from a direction and lane number)
         self.velocity = pg.math.Vector2(self.direction[0] * initial_velocity, self.direction[1] * initial_velocity)
-        self.acceleration = pg.math.Vector2(self.direction[0] *initial_accelerationn, self.direction[1] *initial_accelerationn)
+        self.acceleration = pg.math.Vector2(self.direction[0] * initial_acceleration, self.direction[1] *initial_acceleration)
 
         # Graphics
         image = random.choice(AssetManager.cars)
         self.image = image.convert_alpha() # This gets the clear image backgrounds
-        self.image = self.rotate_image(screen, self.images
+        self.image = self.rotate_image(screen, self.image)
         self.length = self.image.get_size()[0]
         self.width = self.image.get_size()[1]
-        self.image = pg.transform.scale(self.image, (int(self.length/2), int(self.width/2))
+        self.image = pg.transform.scale(self.image, (int(self.length/2), int(self.width/2)))
         
-        # Characteristics8
+        # Characteristics
         self.completed_path = False
         self.completed_intersection = False
         self.lane = lane
         
-    def set_accel(self, new_accel)
+    def set_accel(self, new_accel):
         """
         This is what the AI uses to control the accleration of the vehicle
         """
-        :
         if self.direction == Directions.left or self.direction == Directions.up:
             new_accel *= -1
             
         if self.acceleration[0] == 0:
             self.acceleration = pg.math.Vector2(0, new_accel)
         else:
-            self.acceleration = pg.math.Vector2(new_accel, 0 
+            self.acceleration = pg.math.Vector2(new_accel, 0)
 
     def update(self, dt):
         self.velocity += self.acceleration * dt
@@ -125,40 +123,42 @@ class Car:
         
     def gen_pos_lane(self, lane, direction):
         #Generates X and Y given lane and direction
-        if direction == Directions.up)
-            if lane == 0:e
+        if direction == Directions.up:
+            if lane == 0:
                 return pg.math.Vector2(775, 900)
             if lane == 1:
                 return pg.math.Vector2(831, 900)
-        elif direction == Directions.down)
-            if lane == 0:e
+        elif direction == Directions.down:
+            if lane == 0:
                 return pg.math.Vector2(717, -100)
             if lane == 1:
                 return pg.math.Vector2(661, -100)
-        elif direction == Directions.left)
+        elif direction == Directions.left:
             if lane == 0:
                 return pg.math.Vector2(1540, 367)
             if lane == 1:
                 return pg.math.Vector2(1540, 318)
-        elif direction == Directions.right)
+        elif direction == Directions.right:
             if lane == 0:
                 return pg.math.Vector2(-100, 462)
             if lane == 1:
                 return pg.math.Vector2(-100, 509)
                 
-        returnNone"
+        return None
     
-    def rotate_image(self, screen, old_image)
+    def rotate_image(self, screen, old_image):
         if self.direction == Directions.left:
             return old_image
-        :
+        
         if self.direction == Directions.right:
-            rotated = pg.transform.rotate(old_image, 180
+            rotated = pg.transform.rotate(old_image, 180)
         elif self.direction == Directions.up:
             rotated = pg.transform.rotate(old_image, 270)
         elif self.direction == Directions.down:
             rotated = pg.transform.rotate(old_image, 90)
-        )         rect = rotated.get_rect()         self.position.x -= rect.width / 2         self.position.y -= rect.height / 2    e
+        rect = rotated.get_rect()
+        self.position.x -= rect.width / 2        
+        self.position.y -= rect.height / 2
         return rotated
     
     def in_intersection(self):

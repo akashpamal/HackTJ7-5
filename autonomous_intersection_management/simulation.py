@@ -43,7 +43,7 @@ def main():
             initial_velocity = (random.randrange(3)*0.1) + 0.2
             lane = random.randrange(2)
             new_car = Car(screen, lane, initial_velocity = initial_velocity)
-            
+            accel = None
             start = time.perf_counter()
             current_cars.append((new_car, accel, start))
             
