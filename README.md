@@ -1,3 +1,4 @@
+![HackTJ7-5](./autonomous_intersection_management/res/demo.gif)
 ## Inspiration
 At a traffic signal, vehicles traditionally have to come to a stop to allow other vehicles to pass. This creates traffic buildup and unnecessarily increases carbon emissions. We wanted to find a way to avoid this... especially in a world that is beginning to turn towards automation for ease of several tasks in our daily lives. Our program simulates the interactions between automated cars at an intersection with no lights/signals while eliminating collisions. The program dynamically adjusts the velocity and acceleration of cars in-time so that cars seamlessly and realistically can enter and exit the intersection.
 
@@ -10,4 +11,3 @@ We're proud of how realistic our simulation was and how applicable it could be t
 Created by Akash Pamal, Jack Blair, and Rahel Selemon
 HackTJ 2020 12/13/20
 MIT License
-![HackTJ7-5](./demo.gif)
