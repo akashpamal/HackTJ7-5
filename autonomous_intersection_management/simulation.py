@@ -1,16 +1,18 @@
-import pygame as pg
+####################################
+# Created by Akash Pamal, Jack Blair, and Rahel Selemon
+# HackTJ 2020 12/13/20
+# MIT License
+####################################
 from car import Directions, AssetManager, Car
-import physics
+import pygame as pg
 import random
 import time
-# from physics import get_position_function
 
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 800
-SPAWN_RATE = 2.5 # 0.25 cars per second, or 1 car every four seconds
+SPAWN_RATE = 2.5 #cars per second
 NUM_COLLISIONS = 0
 
-BLACK = (0, 0, 0)
 # BACKGROUND = pg.image.load('./res/Intersection.png')
 BACKGROUND = pg.image.load('./res/ExpandedIntersection.png')
 

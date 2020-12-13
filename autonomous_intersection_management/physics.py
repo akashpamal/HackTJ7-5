@@ -1,3 +1,9 @@
+####################################
+# Created by Akash Pamal, Jack Blair, and Rahel Selemon
+# HackTJ 2020 12/13/20
+# MIT License
+####################################
+
 from sympy.solvers import solve
 from sympy import Symbol, Derivative
 

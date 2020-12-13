@@ -1,7 +1,7 @@
 ####################################
-#Created by Akash Pamal, Jack Blair, and Rahel Selemon
-#HackTJ 2020 12/13/20
-#MIT License
+# Created by Akash Pamal, Jack Blair, and Rahel Selemon
+# HackTJ 2020 12/13/20
+# MIT License
 ####################################
 import pygame as pg
 import random
