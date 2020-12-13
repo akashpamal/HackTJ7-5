@@ -11,16 +11,14 @@ class Directions():
      
     directions = [up, down, left, right]
         
-    # def perpendicular(self, dir1, dir2):
-    #     if dir1 == up:
-    #         return dir2 == down
-    #     elif dir1 == down:
-    #         return dir2 == up
-    #     elif dir1 == left:
-    #         return dir2 == right
-    #     elif dir1 == right:
-    #         return dir2 == left
-    
+    def perpendicular(dir1, dir2):
+        if dir1 == Directions.up or dir == Directions.down:
+            return (dir2 == Directions.left or dir2 == Directions.right), 1
+        elif dir1 == Directions.left or dir1 == Directions.right:
+            return (dir2 == Directions.up or dir2 == Directions.down), 0
+        else:
+            return False, -1
+        
     def opposite(dir1, dir2):
         if dir1 == Directions.up:
             return dir2 == Directions.down
