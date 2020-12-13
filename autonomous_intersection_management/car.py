@@ -31,7 +31,6 @@ class Car:
         self.acceleration = pg.math.Vector2(self.direction[0] * max_acceleration, self.direction[1] * max_acceleration)
         
         # Graphics
-        pg.sprite.Sprite.__init__(self)
         image = random.choice(AssetManager.cars)
         self.image = image.convert_alpha() # This gets the clear image backgrounds
         self.image = self.rotate_image(screen, self.image)
@@ -44,31 +43,29 @@ class Car:
         self.max_velocity = 0.8
         self.brake_deceleration = 5.0
         self.free_deceleration = 0.5
-        
-        # Copies
-        self.OG_velocity = copy.copy(self.velocity)
-        # self.acclertion_change = 
-        
-        
-        
-        
-        # self.pos = self.generate_pos_from_lane()
-        # self.direction = random.choice(Directions.directions)
-        # #(0, 1), (0, -1), (1, 0), (0, 1) 
-        # self.velocity = random.randrange(30, 60)
-
-           
+        self.completed_path = False
         
     def set_accel(self, new_accel):
         print("The AI has changed the Acceeration from " + str(self.acceleration) + " to " + str(new_accel))
         if new_accel > self.max_acceleration:
-            print("Acceleration is not possible !!!!!!!!")
+            print("Acceleration is not possible !!!!!!!! @AKASHHHH")
         self.acceleration = new_accel
 
     def update(self, dt):
         self.velocity += self.acceleration * dt
         #self.velocity = min(self.velocity.x, self.max_velocity)
         self.position += self.velocity * dt
+        
+        
+    def completion_check(self):
+        if self.direction == Directions.right:
+            return self.position.x > 1540
+        elif self.direction == Directions.left:
+            return self.position.x < -100
+        elif self.direction == Directions.up:
+            return self.position.y < -100
+        elif self.direction == Directions.down:
+            return self.position.y > 900
     
     def draw(self, screen):
         screen.blit(self.image, (self.position.x, self.position.y))

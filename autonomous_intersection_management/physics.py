@@ -19,16 +19,18 @@ from sympy import Symbol
 
 
 def get_acceleration_function(V0, Vf, deltat, deltax):
-    a = Symbol('a')
-    b = Symbol('b')
+    # a = Symbol('a')
+    # b = Symbol('b')
     c = V0
-    b = solve((Vf - V0 - b * deltat) ** .5 / 3 * deltat ** 3 + b / 2 * deltat ** 2 + V0 * deltat, b)
-    b = b[0]
-    b = -25.276
-    a = solve(a * deltat ** 2 + b * deltat + c, a)
+    b = (deltax - V0*deltat - deltat**3*Vf-deltat**3*V0) / (deltat/2 - deltat**4)
+    # a = (6*deltax - 3*V0*deltat - 3*Vf) / ((2*deltat**3) - (3*delta**2))
+    # b = b[0]
+    # b = -25.276
+    # a = solve(a * deltat ** 2 + b * deltat + c, a)
     # a = solve((Vf - V0 - b * deltat) ** .5 / deltat, a)
-    a = a[0]
-    deltat_new = Symbol('t')
+    # a = a[0]
+    # deltat_new = Symbol('t')
+    # b = (Vf - V0 - a*deltat**2) / deltat
     derivative_function = sym.diff(a * deltat_new ** 2 + b * deltat_new + c)
     return derivative_function
     

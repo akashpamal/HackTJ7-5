@@ -2,9 +2,11 @@ import pygame as pg
 #import numpy as np
 from car import Directions, AssetManager, Car
 import random
+import time
 
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 800
+SPAWN_RATE = 2 #0.25 cars per second, or 1 car every four seconds
 
 BLACK = (0, 0, 0)
 # BACKGROUND = pg.image.load('./res/Intersection.png')
@@ -23,35 +25,33 @@ def backgroundInputCheck(eventList): # Constantly checks for quits and enters
                     quitGame()
                      
 def main():
+    start = time.perf_counter()
     BACKGROUND.convert()
-    num = 1
-    car = Car(screen, num)
-    car2 = Car(screen, num)
-    car3 = Car(screen, num)
-    car4 = Car(screen, num)
+    current_cars = []
     
     while True:
         deltaTime = clock.get_time()
         backgroundInputCheck(pg.event.get())
         
-        #Update all cars
-        #spawn new cars
+        if (time.perf_counter() - start) > (1/SPAWN_RATE):
+            current_cars.append(Car(screen, random.randrange(2)))
+            start = time.perf_counter()
         
         screen.fill(BLACK)
         screen.blit(BACKGROUND, (0, 0))
-        car.update(deltaTime)
-        car.draw(screen)
-        car2.update(deltaTime)
-        car2.draw(screen)
-        car3.update(deltaTime)
-        car3.draw(screen)
-        car4.update(deltaTime)
-        car4.draw(screen)
-        #playerCar.draw(screen, SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-         
+        for car in current_cars:
+            if car.completion_check():
+                current_cars.remove(car)
+                print("Removed car")
+            else:
+                car.update(deltaTime)
+                car.draw(screen)
+                
+        if len(current_cars) > 0:        
+            print(current_cars[0].velocity)
+            
         clock.tick(60)
         pg.display.flip()
-    
     
 if __name__ == "__main__":
     pg.init()
