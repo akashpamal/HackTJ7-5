@@ -54,7 +54,7 @@ class AssetManager():
     cars = [lblue, blue, yellow, brown, grey, red, purple, green]
     
 class Car:
-    def __init__(self, screen, lane, max_acceleration = 0.0001, initial_velocity = 0.5):
+    def __init__(self, screen, lane, initial_velocity = 0.5, initial_acceleration = 0.0001):
         """
         Stores all the information about a certain vehicle in the scene
         """
@@ -63,7 +63,7 @@ class Car:
         self.direction = random.choice(Directions.directions) 
         self.position = self.gen_pos_lane(lane, self.direction #Generates lane position from a direction and lane number)
         self.velocity = pg.math.Vector2(self.direction[0] * initial_velocity, self.direction[1] * initial_velocity)
-        self.acceleration = pg.math.Vector2(self.direction[0] * max_acceleration, self.direction[1] * max_acceleration)
+        self.acceleration = pg.math.Vector2(self.direction[0] *initial_accelerationn, self.direction[1] *initial_accelerationn)
 
         # Graphics
         image = random.choice(AssetManager.cars)
@@ -73,10 +73,7 @@ class Car:
         self.width = self.image.get_size()[1]
         self.image = pg.transform.scale(self.image, (int(self.length/2), int(self.width/2))
         
-        # Characteristics)
-        self.max_acceleration = max_acceleration # Default is 0.001
-        self.max_decceleration = 0.05
-        self.max_velocity = 0.8
+        # Characteristics8
         self.completed_path = False
         self.completed_intersection = False
         self.lane = lane
@@ -92,8 +89,7 @@ class Car:
         if self.acceleration[0] == 0:
             self.acceleration = pg.math.Vector2(0, new_accel)
         else:
-            self.acceleration = pg.math.Vector2(new_accel, 0)
-    
+            self.acceleration = pg.math.Vector2(new_accel, 0 
 
     def update(self, dt):
         self.velocity += self.acceleration * dt

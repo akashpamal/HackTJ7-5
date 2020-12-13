@@ -7,23 +7,6 @@
 from sympy.solvers import solve
 from sympy import Symbol, Derivative
 
-
-# class Physics:
-#     def get_position(self, a, timeofAcc dtAcc, elapsed_time):
-#         if elapsed_time <= timeofAcc:
-#             return initV*elapsed_time
-#         elif elapsed_time <= (timeofAcc+dt):
-#             return initV*timeofAcc + (initV*(elapsed_time-timeofAcc) + (0.5*a*(elapsed_time-timeofAcc))
-#         else:
-#             return initV*timeofAcc + (initV*dt) + (0.5*a*dt) + (finalV*(elapsed_time-dt-timeofAcc))
-
-#     def funcname(self, parameter_list):
-#         """
-#         docstring
-#         """
-#         pass
-
-
 def get_position_function(V0, Vf, spawn_time, intersect_time, deltax):
     deltat = intersect_time - spawn_time
     c = V0
@@ -44,9 +27,14 @@ def get_position_function(V0, Vf, spawn_time, intersect_time, deltax):
     
     return piecewise_position_function
 
-
-    
-    
+# class Physics:
+#     def get_position(self, a, timeofAcc dtAcc, elapsed_time):
+#         if elapsed_time <= timeofAcc:
+#             return initV*elapsed_time
+#         elif elapsed_time <= (timeofAcc+dt):
+#             return initV*timeofAcc + (initV*(elapsed_time-timeofAcc) + (0.5*a*(elapsed_time-timeofAcc))
+#         else:
+#             return initV*timeofAcc + (initV*dt) + (0.5*a*dt) + (finalV*(elapsed_time-dt-timeofAcc))
 
 if __name__ == '__main__':
     acceleration_function = get_position_function(50, 30, 0, 5, 20)
