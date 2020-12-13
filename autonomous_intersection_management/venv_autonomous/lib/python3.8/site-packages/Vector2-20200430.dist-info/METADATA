@@ -1,0 +1,666 @@
+Metadata-Version: 2.1
+Name: Vector2
+Version: 20200430
+Summary: Vectors in 2 dimensional Euclidean space
+Home-page: https://github.com/pypa/Vector2
+Author: philip r brenan
+Author-email: philiprbrenan@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+<h1>Table of contents</h1>
+<p><table cellpadding=10>
+
+<tr><td><a href="#2a84ce044b53bb3902f080782d296b09">Vector2()</a><td>Vectors in 2 dimensional euclidean space.
+
+</table>
+
+<h1 id="2a84ce044b53bb3902f080782d296b09">Class: Vector2()</h1>
+<p>Vectors in 2 dimensional euclidean space.</p>
+
+<h2>Normalize</h2>
+Normalize a copy of vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 3 + y * 4).Normalize() == x * 0.6 + y * 0.8)
+</pre>
+<hr>
+<h2>R180</h2>
+Rotate  a copy of a vector by 180 degrees.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x.R180() == -x)
+</pre>
+<hr>
+<h2>R270</h2>
+Rotate a vector by 270 degrees anticlockwise.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x.R270() == -y)
+</pre>
+<hr>
+<h2>R90</h2>
+Rotate a copy of a vector by 90 degrees anticlockwise.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x.R90() == y)
+</pre>
+<hr>
+<h2>Swap</h2>
+Swap the components of a copy of a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+z = x + y * 2
+Z = z.Swap()
+assert(z != Z)
+</pre>
+<hr>
+<h2>__abs__</h2>
+Length of a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(abs(x * 3 + y * 4) == 5)
+</pre>
+<hr>
+<h2>__add__ **+ **</h2>
+Add the second vector to a copy of the first vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x + y == Vector2(1, 1))
+</pre>
+<hr>
+<h2>__eq__ **==**</h2>
+Whether two vectors are equal within a radius of floating point epsilon.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x * 2 + y - x - y == x)
+</pre>
+<hr>
+<h2>__iadd__ **+=**</h2>
+Add the second vector to the first vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+X = x
+X = X + x
+assert(x == Vector2(1, 0) and X == Vector2(2, 0))
+</pre>
+<hr>
+<h2>__imul__ ***=**</h2>
+Multiply a vector by a scalar.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>scalar
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+X = x
+X = X * 2
+assert(x == Vector2(1, 0) and X == Vector2(2, 0))
+</pre>
+<hr>
+<h2>__init__</h2>
+Create a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>x = 0
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x + y == Vector2(1, 1))
+</pre>
+<hr>
+<h2>__isub__ **-=**</h2>
+Subtract the second vector from the first vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+X = x
+X = X - x
+assert(x == Vector2(1, 0) and X == Vector2(0, 0))
+</pre>
+<hr>
+<h2>__itruediv__ **/=**</h2>
+Divide a vector by a scalar.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>scalar
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+X = x * 4
+X = X / 2
+assert(x == Vector2(1, 0) and X == Vector2(2, 0))
+</pre>
+<hr>
+<h2>__mul__ *** **</h2>
+Multiply a copy of vector by a scalar.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>scalar
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x * 2 + y * 3 == Vector2(2, 3))
+</pre>
+<hr>
+<h2>__neg__ **- **</h2>
+Rotate a copy of a vector by 180 degrees.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(- y == Vector2(0, -1))
+</pre>
+<hr>
+<h2>__repr__</h2>
+String representation of a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(repr(x + y * 2) == 'Vector2(1, 2)')
+</pre>
+<hr>
+<h2>__sub__ **- **</h2>
+Subtract the second vector from a copy of the first vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x - y == Vector2(1, -1))
+</pre>
+<hr>
+<h2>__truediv__ **/ **</h2>
+Divide a copy of a vector by a scalar.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>scalar
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 4 + y * 2) / 2 == x * 2 + y)
+</pre>
+<hr>
+<h2>angle</h2>
+Angle in radians anticlockwise that the first vector must be rotated to point along the second vector normalized to the range: -pi to +pi.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>o</i></b><td>p
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+for i in range(-179, +179): # Anticlockwise angle from x
+assert(Vector2.close
+(x.angle(x * math.cos(dr(i)) + y * math.sin(dr(i))), dr(i)))
+</pre>
+<hr>
+<h2>area</h2>
+Signed area of the parallelogram defined by the two vectors. The area is negative if the second vector appears to the right of the first if they are both placed at the origin and the observer stands against the z-axis in a left handed coordinate system.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x + y).area(-x + y) == 2)
+</pre>
+<hr>
+<h2>clone</h2>
+Clone a vector to allow it to be modified by other operations.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+z = x + y * 2
+Z = z.clone()
+assert(z == Z)
+</pre>
+<hr>
+<h2>close</h2>
+Whether two numbers are close.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>a</i></b><td>b
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(Vector2.close(0, Vector2.closeRadius() / 2))
+</pre>
+<hr>
+<h2>closeRadius</h2>
+Two numbers are equal if they are less than this far apart.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i></i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(Vector2.closeRadius() < 1)
+</pre>
+<hr>
+<h2>cos</h2>
+cos(angle between two vectors).
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(Vector2.close((x + y).cos(y), 1 / r2))
+assert(Vector2.close( x.cos(x + yr3), 0.5))
+</pre>
+<hr>
+<h2>distance</h2>
+Distance between the points identified by two vectors when placed on the same point.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 3 + y * 4).distance (-(x * 3 + y * 4)) == 10)
+</pre>
+<hr>
+<h2>distance2</h2>
+Distance squared between the points identified
+
+       by two vectors when placed on the same point.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 3 + y * 4).distance2(-(x * 3 + y * 4)) == 100)
+</pre>
+<hr>
+<h2>dot</h2>
+Dot product of two vectors.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 2 + y).dot(x + y * 3) == 5)
+</pre>
+<hr>
+<h2>length</h2>
+Length of a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 3 + y * 4).length() == 5)
+</pre>
+<hr>
+<h2>length2</h2>
+Length squared of a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 3 + y * 4).length2() == 25)
+</pre>
+<hr>
+<h2>nonZero</h2>
+Whether a number is non zero.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>n</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(Vector2.nonZero(Vector2.closeRadius()))
+</pre>
+<hr>
+<h2>normalize</h2>
+Normalize a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x * 3 + y * 4).clone().normalize() == x * 0.6 + y * 0.8)
+</pre>
+<hr>
+<h2>r180</h2>
+Rotate a vector by 180 degrees.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x.clone().r180() == -x)
+</pre>
+<hr>
+<h2>r270</h2>
+Rotate a copy of a vector by 270 degrees anticlockwise.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x.clone().r270() == -y)
+</pre>
+<hr>
+<h2>r90</h2>
+Rotate a vector by 90 degrees anticlockwise.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(x.clone().r90() == y)
+</pre>
+<hr>
+<h2>sin</h2>
+sin(angle between two vectors).
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>other
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(Vector2.close((x + y).sin(y), 1 / r2))
+assert(Vector2.close( x.sin(x + yr3), r3 / 2))
+</pre>
+<hr>
+<h2>smallestAngleToNormalPlane</h2>
+The smallest angle between the second vector and a plane normal to the first vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>a</i></b><td>b
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(Vector2.close(dr( 0), y.smallestAngleToNormalPlane( x))) # First vector is y, second vector is 0 degrees anti-clockwise from x axis
+assert(Vector2.close(dr(+45), y.smallestAngleToNormalPlane( x + y))) # +45
+assert(Vector2.close(dr(+90), y.smallestAngleToNormalPlane( y))) # +90
+assert(Vector2.close(dr(+45), y.smallestAngleToNormalPlane(-x + -y))) # +135
+assert(Vector2.close(dr( 0), y.smallestAngleToNormalPlane(-x))) # +180
+assert(Vector2.close(dr(+45), y.smallestAngleToNormalPlane(-x + -y))) # +225
+assert(Vector2.close(dr(+90), y.smallestAngleToNormalPlane( -y))) # +270
+assert(Vector2.close(dr(+45), y.smallestAngleToNormalPlane(-x + -y))) # +315
+assert(Vector2.close(dr( 0), y.smallestAngleToNormalPlane( x))) # +360
+</pre>
+<hr>
+<h2>swap</h2>
+Swap the components of a vector.
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i>this</i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert((x + y * 2).swap() == y + x * 2)
+</pre>
+<hr>
+<h2>zeroAndUnits</h2>
+Create the useful vectors: zero=(0,0), x=(1,0), y=(0,1).
+<h4>Parameters</h4>
+<table cellpadding=10>
+<tr><th>Name<th>Description
+<tr><td><b><i></i></b><td>
+
+</table>
+
+<h4>Examples</h4>
+<pre language="python">
+assert(zero != x and zero != y and x != y)
+</pre>
+<hr>
+<h1>Possible improvements to documentation</h1>
+<h2>/home/phil/python/Vector2/Vector2.py</h2>
+<p><table cellpadding=10>
+
+<tr><td>No parameter definitions for Vector2().__init__
+
+<tr><td>No parameter definitions for Vector2().__repr__
+
+<tr><td>No parameter definitions for Vector2().__neg__
+
+<tr><td>No parameter definitions for Vector2().__abs__
+
+<tr><td>No parameter definitions for Vector2().__eq__
+
+<tr><td>No parameter definitions for Vector2().__iadd__
+
+<tr><td>No parameter definitions for Vector2().__add__
+
+<tr><td>No parameter definitions for Vector2().__isub__
+
+<tr><td>No parameter definitions for Vector2().__sub__
+
+<tr><td>No parameter definitions for Vector2().__imul__
+
+<tr><td>No parameter definitions for Vector2().__mul__
+
+<tr><td>No parameter definitions for Vector2().__itruediv__
+
+<tr><td>No parameter definitions for Vector2().__truediv__
+
+<tr><td>No parameter definitions for Vector2().zeroAndUnits
+
+<tr><td>No parameter definitions for Vector2().clone
+
+<tr><td>No parameter definitions for Vector2().closeRadius
+
+<tr><td>No parameter definitions for Vector2().close
+
+<tr><td>No parameter definitions for Vector2().nonZero
+
+<tr><td>No parameter definitions for Vector2().length
+
+<tr><td>No parameter definitions for Vector2().length2
+
+<tr><td>No parameter definitions for Vector2().distance
+
+<tr><td>No parameter definitions for Vector2().distance2
+
+<tr><td>No parameter definitions for Vector2().normalize
+
+<tr><td>No parameter definitions for Vector2().Normalize
+
+<tr><td>No parameter definitions for Vector2().dot
+
+<tr><td>No parameter definitions for Vector2().area
+
+<tr><td>No parameter definitions for Vector2().cos
+
+<tr><td>No parameter definitions for Vector2().sin
+
+<tr><td>No parameter definitions for Vector2().angle
+
+<tr><td>No parameter definitions for Vector2().smallestAngleToNormalPlane
+
+<tr><td>No parameter definitions for Vector2().r90
+
+<tr><td>No parameter definitions for Vector2().R90
+
+<tr><td>No parameter definitions for Vector2().r180
+
+<tr><td>No parameter definitions for Vector2().R180
+
+<tr><td>No parameter definitions for Vector2().r270
+
+<tr><td>No parameter definitions for Vector2().R270
+
+<tr><td>No parameter definitions for Vector2().swap
+
+<tr><td>No parameter definitions for Vector2().Swap
+
+</table>
+
+

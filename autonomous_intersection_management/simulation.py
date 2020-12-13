@@ -6,23 +6,24 @@ SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 800
 
 BLACK = (0, 0, 0)
-
-
+# BACKGROUND = pg.image.load('./res/Intersection.png')
+BACKGROUND = pg.image.load('./res/ExpandedIntersection.png')
 
 def quitGame(): #Quits Pygame and Python
     pg.quit()
     quit()
-    
-def backgroundInputCheck(eventList): #Constantly checks for quits and enters
+
+def backgroundInputCheck(eventList): # Constantly checks for quits and enters
     for event in eventList:
             if event.type == pg.QUIT:
                 quitGame()
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
                     quitGame()
-                    
-                            
+                     
 def main():
+    BACKGROUND.convert()
+    car = Car(screen, 1)
     
     while True:
         deltaTime = clock.get_time()
@@ -32,7 +33,8 @@ def main():
         #spawn new cars
         
         screen.fill(BLACK)
-        #screen.blit(TRACK_1, (-playerCar.position.x, -playerCar.position.y))
+        screen.blit(BACKGROUND, (0, 0))
+        car.draw(screen)
         #playerCar.draw(screen, SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
          
         clock.tick(60)

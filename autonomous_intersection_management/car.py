@@ -3,7 +3,7 @@ import pygame as pg
 import copy
 from enum import Enum
 
-class Directions(Enum):
+class Directions():
     right = (1, 0)
     left = (-1, 0)
     up = (0, 1)
@@ -11,7 +11,7 @@ class Directions(Enum):
      
     directions = [up, down, left, right]
 
-class AssetManager(Enum):
+class AssetManager():
     lblue = pg.image.load('./res/BlueCar.png')
     blue = pg.image.load('./res/BlueSudan.png')
     yellow = pg.image.load('./res/YellowTruck.png')
@@ -23,22 +23,24 @@ class AssetManager(Enum):
     cars = [lblue, blue, yellow, brown, grey, red, purple, green]
     
 class Car:
-    def __init__(self, lane, max_acceleration = 0.0001):
+    def __init__(self, screen, lane, max_acceleration = 0.0001):
+        # Physics
+        self.direction = random.choice(Directions.directions)
+        self.position = self.gen_pos_lane(lane, self.direction)
+        self.velocity = pg.math.Vector2(0.0, 0.0)
+        self.acceleration = 0.0
+        
         # Graphics
         pg.sprite.Sprite.__init__(self)
         image = random.choice(AssetManager.cars)
         self.image = image.convert_alpha() # This gets the clear image backgrounds
-        self.image = pg.transform.scale(self.image, (int(800 / 4), int(397 / 4)))
-        
-        # Physics
-        self.direction = random.choice(Directions.directions)
-        self.position = self.gen_pos_lane(lane, self.direction)
-        self.velocity = Vector2(0.0, 0.0)
-        self.acceleration = 0.0
+        self.image = pg.transform.scale(self.image, (200, 200))
+        # self.image = self.rotate_image(screen, self.image)
         
         # Characteristics
         self.length = self.image.get_size()[0]
         self.width = self.image.get_size()[1]
+        self.image = pg.transform.scale(self.image, (int(self.length/2), int(self.width/2)))
         self.max_acceleration = max_acceleration # Default is 0.001
         self.max_velocity = 0.8
         self.brake_deceleration = 5.0
@@ -59,15 +61,21 @@ class Car:
         
         
         
-        
-
-    
-
+    def set_accel(self, new_accel):
+        pass
 
     def update(self, dt):
-        pass
+        self.velocity += (self.acceleration * dt, 0)
+        self.velocity.x = max(-self.max_velocity, min(self.velocity.x, self.max_velocity))
     
+    def draw(self, screen):
+        screen.blit(self.image, (self.velocity.x, self.velocity.y))
         
     def gen_pos_lane(self, lane, dir):
-        return Vector2(0, 0)
-        
+        return pg.math.Vector2(0, 0)
+    
+    def rotate_image(self, screen, old_image):
+        if self.direction == Directions.right:
+            rotated = pg.transform.rotate(old_image, 180)
+            rect = rotated.get_rect()
+            screen.blit(rotated, (middleX - rect.width / 2, middleY - rect.height / 2))
